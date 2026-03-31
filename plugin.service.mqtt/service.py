@@ -88,8 +88,15 @@ def setplaystate(state,detail):
         publish("playbackstate",state,{"kodi_state":detail,"kodi_playerid":activeplayerid,"kodi_playertype":activeplayertype,"kodi_timestamp":int(time.time())})
 
 def convtime(ts):
-    return("%02d:%02d:%02d" % (ts/3600,(ts/60)%60,ts%60))
-
+    h = int(ts // 3600)
+    m = int((ts // 60) % 60)
+    s = int(ts % 60)
+    if h > 0:
+        return "%d:%02d:%02d" % (h, m, s)
+    elif m > 0:
+        return "%d:%02d" % (m, s)
+    else:
+        return "0:%02d" % s
 #
 # Publishes playback progress
 #
