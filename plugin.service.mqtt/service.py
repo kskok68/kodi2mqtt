@@ -121,7 +121,7 @@ def publishdetails():
     if not player.isPlaying():
         return
     if ignorelist(mqttignore,"filepath"):
-        res=sendrpc("Player.GetItem",{"playerid":activeplayerid,"properties":["title","streamdetails","file","thumbnail","fanart"]})
+        res=sendrpc("Player.GetItem",{"playerid":activeplayerid,"properties":["art","artist","album","episode","file","firstaired","genre","mpaa","plot","runtime","season","showtitle","streamdetails","tagline","title","track","year"]})
         if "result" in res:
             newtitle=res["result"]["item"]["title"]
             newdetail={"kodi_details":res["result"]["item"]}
